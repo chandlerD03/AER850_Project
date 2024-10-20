@@ -1,6 +1,4 @@
-# 850_project_1_1
-#importing all the packages
- 
+# 850_project_1
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -20,7 +18,6 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 
 #step 1: Data processing 
-#data is read from the file and converted into a datafrqamce using Panadas. 
 #data is read from the file and converted into a datafrqamce using Pandas. 
 #data is printed to verify that the file has been converted properly
 
@@ -80,14 +77,12 @@ for train_index, test_index in my_splitter.split(df, df["Step"]):
     strat_df_train = df.loc[train_index].reset_index(drop=True) 
     strat_df_test = df.loc[test_index].reset_index(drop=True)    
 
-X_train = strat_df_train.drop("Step", axis = 1)
 strat_df_train = strat_df_train.drop(columns=["coordinate categories"], axis=1)
 strat_df_test = strat_df_test.drop(columns=["coordinate categories"], axis=1)
 
 
 X_train = strat_df_train.drop(["Step"], axis = 1)
 y_train = strat_df_train["Step"]
-X_test = strat_df_test.drop("Step", axis = 1)
 X_test = strat_df_test.drop(["Step"], axis = 1)
 y_test = strat_df_test["Step"]
 
@@ -267,10 +262,8 @@ print(f"Decision Tree - MAE (Train): {mae_train_dt}, MAE (Test): {mae_test_dt}")
 print("Results for Decision Tree")
 
 for i in range(5):
-     print("Predictions:", y_train_pred_dt[i], "Actual values:", y_train[i])
       print("Predictions:", y_train_pred_dt[i], "Actual values:", y_train[i])
 
-# Training and testing error for Random Forest
 y_train_pred_rf = best_model_rf.predict(X_train)
 y_test_pred_rf = best_model_rf.predict(X_test)
 mae_train_rf = mean_absolute_error(y_train, y_train_pred_rf)
@@ -279,13 +272,11 @@ print(f"Random Forest - MAE (Train): {mae_train_rf}, MAE (Test): {mae_test_rf}")
 print("Results for Random Forest")
 
 for i in range(5):
-     print("Predictions:", y_train_pred_rf[i], "Actual values:", y_train[i])
       print("Predictions:", y_train_pred_rf[i], "Actual values:", y_train[i])
      
      
      
     
-# Step % Model Performance Analysis
 #Step 5 Model Performance Analysis
 
 
